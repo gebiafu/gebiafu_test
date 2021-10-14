@@ -1,0 +1,12 @@
+#修改默认账号密码
+spring:
+  security:
+    user:
+      name: gebiafu
+      password: 123
+      #数据库连接信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456

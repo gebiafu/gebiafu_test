@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>登录后进入的首页面</title>
+</head>
+<body>
+<!--
+     sec:authentication - sec 是security提供的thymeleaf标签库插件
+      authentication - 用于访问登录用户主体信息的属性。
+        访问的主体对象是Authentication类型对象。可以访问对象中的方法和属性。
+        UsernamePasswordAuthenticationToken是Security中默认使用的登录用户主体类型。
+        类型中及父类型中定义的方法和属性都可以访问。
+ -->
+    <h3>登录成功，<span sec:authentication="name"></span>你好</h3>
+    <form action="/logout" method="post">
+        <input type="text" th:value="${_csrf.token}" name="_csrf">
+        <input type="submit" value="退出登录">
+    </form>
+    <hr>
+    <span sec:authentication="principal"></span><br>
+    <span sec:authentication="principal.username"></span><br>
+    <span sec:authentication="principal.password"></span><br>
+    <span sec:authentication="principal.authorities"></span><br>
+    <span sec:authentication="credentials"></span><br>
+    <span sec:authentication="details"></span><br>
+    <hr>
+<!--
+     sec:authorize - 是用于实现权限控制的标签。使用方式和注解中的@PreAuthroize一样。和配置类型中的access方法一样。
+ -->
+    <button sec:authorize="hasRole('ROLE_超级管理员')">超级管理员角色</button><br>
+    <button sec:authorize="hasRole('ROLE_管理员')">管理员角色</button><br>
+    <button sec:authorize="hasAuthority('/sys')">/sys权限</button><br>
+    <button sec:authorize="hasAuthority('/user')">/user权限</button><br>
+    <button sec:authorize="hasAuthority('/user/select')">/user/select权限</button><br>
+</body>
+</html>
