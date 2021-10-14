@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    host: 192.168.134.128
+    username: gebiafu
+    password: gebiafu
+    port: 5672 #RabbitMQ服务器的端口
+    virtual-host: / #RabbitMQ服务器的虚拟主机名称.默认 /
