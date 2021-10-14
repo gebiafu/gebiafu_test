@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: first-consumer
+server:
+  port: 9091
+dubbo:
+  application:
+    id: first-consumer
+    name: first-consumer
+  registry:
+    address: zookeeper://192.168.134.128:2181
+  consumer:
+    loadbalance: random #配置所有的consumer负载均衡策略,局部(注解)优先,建议写在注解上
+    check: false #配置全局启动检查,默认true,局部优先;

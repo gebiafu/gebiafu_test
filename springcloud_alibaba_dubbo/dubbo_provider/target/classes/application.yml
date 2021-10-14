@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: first-provider
+server:
+    port: 9090
+dubbo: #��ʼ����dubbo
+  application: #����dubboӦ��
+    id: first-provider #dubboӦ�õ�Ψһ����,������д.Ĭ��ʹ��dubbo.application.name
+    name: first-provider #dubboӦ�õ�����,������д,dubbo��spring cloudһ��,����Ӧ������������Ĺ���;
+  registry: #����ע������
+    address: zookeeper://192.168.134.128:2181 #ע�����ĵ�ַ
+  protocol: #����consumer��provider���ͨѶЭ��,Ĭ����dubboЭ��,�˿���20880,�������,����ɶ�����
+    name: dubbo
+    port: 20880 #dubbo��ͨѶЭ��,����ֻ�ڷ����ṩ��������
+    payload: 838860800 #������������Ӧ������;Ĭ��8M(8*1024*1024)
+  provider:
+    loadbalance: random #���õ�ǰӦ�������е�Ĭ�ϸ��ؾ������.�ֲ�����,ע������;

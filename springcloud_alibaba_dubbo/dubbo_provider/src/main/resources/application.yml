@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: first-provider
+server:
+    port: 9090
+dubbo: #开始配置dubbo
+  application: #配置dubbo应用
+    id: first-provider #dubbo应用的唯一名称,建议填写.默认使用dubbo.application.name
+    name: first-provider #dubbo应用的名称,必须填写,dubbo和spring cloud一样,基于应用名称做服务的管理;
+  registry: #配置注册中心
+    address: zookeeper://192.168.134.128:2181 #注册中心地址
+  protocol: #配置consumer和provider间的通讯协议,默认是dubbo协议,端口是20880,如果配置,必须成对配置
+    name: dubbo
+    port: 20880 #dubbo的通讯协议,可以只在服务提供者中配置
+    payload: 838860800 #配置最大请求和应答数据;默认8M(8*1024*1024)
+  provider:
+    loadbalance: random #配置当前应用中所有的默认负载均衡策略.局部优先,注解优先;

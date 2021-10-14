@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: first-consumer
+server:
+  port: 9091
+dubbo:
+  application:
+    id: first-consumer
+    name: first-consumer
+  registry:
+    address: zookeeper://192.168.134.128:2181
+  consumer:
+    loadbalance: random #�������е�consumer���ؾ������,�ֲ�(ע��)����,����д��ע����
+    check: false #����ȫ���������,Ĭ��true,�ֲ�����;
