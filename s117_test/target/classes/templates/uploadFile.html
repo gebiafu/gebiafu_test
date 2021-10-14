@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件管理系统 - 上传文件</title>
+</head>
+<body>
+    <!-- 上传文件的时候，表单的强制要求有：
+         1. 请求方式必须是post,get请求的请求头，不能传递文件
+         2. enctype=multipart/form-data。把请求体切割为若干部分，把上传的文件切分，再若干
+            请求体分块中上传。如果文件太小，一块即可。文件过大可以切分多线程上传。
+     -->
+    <div style="width:800px; margin: auto; ">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+                <td style="text-align: right; padding-right: 5px">
+                    上传文件
+                </td>
+                <td style="text-align: left ; padding-left: 5px">
+                    <input type="file" name="file">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center" colspan="2">
+                    <input type="submit" value="上传">
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+</body>
+</html>

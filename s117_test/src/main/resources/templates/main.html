@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>文件管理系统 - 主页面</title>
+</head>
+<body>
+    <div style="width: 800px; margin: auto">
+        <div style="width: 100%; text-align:right; padding-right: 20px; height: 50px">
+            <span th:text="欢迎"></span><span sec:authentication="name"></span>
+        </div>
+        <div style="width: 100%; text-align: center; height: 50px">
+            <a th:href="@{/toUpload}">上传文件</a>
+        </div>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="height: 180px">
+            <!-- 判断当前登录用户是否曾上传文件 -->
+            <tr th:if="${total == 0}">
+                <td style="text-align: center;" colspan="4">
+                    <span style="color: red">没有任何文件，请先上传。</span>
+                </td>
+            </tr>
+            <tr th:if="${total > 0}" style="height: 40px">
+                <td style="text-align: center">主键</td>
+                <td style="text-align: center">文件名</td>
+                <td style="text-align: center">文件大小</td>
+                <td style="text-align: center">操作</td>
+            </tr>
+            <tr th:each="file : ${list}" style="height: 40px">
+                <td style="text-align: center" th:text="${file.id}"></td>
+                <td style="text-align: center">
+                    <a target="_blank" th:href="@{/showImage(fileName=${file.fileName})}" th:text="${file.originalFileName}"></a>
+                </td>
+                <td style="text-align: center" th:text="${file.fileSize}"></td>
+                <td style="text-align: center">
+                    <a th:href="@{/download(fileName=${file.fileName},originalFileName=${file.originalFileName})}">下载</a>
+                </td>
+            </tr>
+            <tr th:if="${total > 0}" style="height: 40px">
+                <td style="text-align: center" colspan="4" th:if="${total > 0}">
+                    总计文件数：<span th:text="${total}"></span> &nbsp;&nbsp;&nbsp;
+                    <a th:if="${currPage > 1}" th:href="@{/toMain(page=1,rows=2)}">首页</a>&nbsp;&nbsp;&nbsp;
+                    <a th:if="${currPage > 1}" th:href="@{/toMain(page=${currPage-1},rows=2)}">上一页</a>&nbsp;&nbsp;&nbsp;
+                    <a th:if="${currPage < pages}" th:href="@{/toMain(page=${currPage+1},rows=2)}">下一页</a>&nbsp;&nbsp;&nbsp;
+                    <a th:if="${currPage < pages}" th:href="@{/toMain(page=${pages},rows=2)}">尾页</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

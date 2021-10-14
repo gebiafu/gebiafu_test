@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>文件管理系统 - 图片预览</title>
+</head>
+<body>
+    <div style="width: 800px; margin: auto">
+        <img style="width: 600px" th:src="@{/image(fileName=${fileName})}"/>
+    </div>
+</body>
+</html>

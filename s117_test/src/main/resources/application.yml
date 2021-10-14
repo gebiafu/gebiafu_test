@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/S117?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  # 文件上传的大小限制。这个是spring mvc中的multipartResolver的限制
+  servlet:
+    multipart:
+      max-request-size: 1048576000 # 一个请求的最大容量，默认10MB
+      max-file-size: 1048576000 # 一个文件的最大容量，默认1MB
+
+# 配置日志。 level需要配置的是一个map。key是要输出的日志的范围，value是日志的级别
+logging:
+  level:
+    com.bjsxt: debug
+
+sys:
+  default:
+    authorities: '/toMain;/listFiles;/toUpload;/upload;/download;/logout;/login'
+
